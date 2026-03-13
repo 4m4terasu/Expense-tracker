@@ -1,17 +1,17 @@
-type ExpenseCategory = {
-    food : string;
-    bills : string;
-    entartaiment : string;
-    subscriptions : string;
-    shopping : string;
-    other : string;
-}
+export type ExpenseCategory = "food" | "bills" | "entertainment" | "subscriptions" | "shopping" | "other";
 
-type Expense = {
+export type Expense = {
     id : string;
     title : string;
     amount : number;
     category: ExpenseCategory;
     createdAt: Date;
+    note? : string;
+}
+
+type NewExpenseInput = {
+    title : string;
+    amount : number;
+    category: ExpenseCategory;
     note? : string;
 }

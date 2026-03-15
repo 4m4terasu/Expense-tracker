@@ -12,7 +12,7 @@ export default function RootLayout({children,}: {  children: React.ReactNode}) {
   <body>
     <div>
       <header>
-        <h1>CR7</h1>
+        <h1>Expense Tracker</h1>
           <nav>
               <a href="/">Home</a>
           </nav>  

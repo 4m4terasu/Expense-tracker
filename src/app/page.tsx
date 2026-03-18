@@ -1,6 +1,8 @@
 import { calculateTotalExpenses, getCategoryTotals, getMostExpensiveExpense, getLeastExpensiveExpense, sortExpensesByDate } from "./lib/expenses/expense-utils";
 import { expenses } from "./lib/expenses/expense-data";
 import { ExpenseListItem } from "../components/expenses/ExpenseListItem";
+import { SummaryCard } from "../components/dashboard/SummaryCard";
+import Link from "next/link";
   
 export default function Home() {
 const totalExpenses = calculateTotalExpenses(expenses);
@@ -16,33 +18,29 @@ const recentExpenses = sortExpensesByDate(expenses, false).slice(0, 5);
       <section className="flex flex-col gap-4">
 
         <h2 className="text-xl font-medium tracking-tight">Overview</h2>
-        <div className="grid gap-4">
-          <div className="rounded-2xl bg-white border shadow-sm p-4">
-            <p className="text-sm text-slate-600">Total Expenses</p>
-            <p className="text-2xl font-semibold tracking-tight">${totalExpenses.toFixed(2)}</p>
-          </div>
-          <div className="rounded-2xl bg-white border shadow-sm p-4">
-            <p className="text-sm text-slate-600">Most Expensive</p>
-            <p className="text-2xl font-semibold tracking-tight">{mostExpensive !== null ? `$${mostExpensive.amount.toFixed(2)}` : "-"}</p>
-          </div>
-          <div className="rounded-2xl bg-white border shadow-sm p-4">
-            <p className="text-sm text-slate-600">Least Expensive</p>
-            <p className="text-2xl font-semibold tracking-tight">{leastExpensive !== null ? `$${leastExpensive.amount.toFixed(2)}` : "-"}</p>
-          </div>
-          <div className="rounded-2xl bg-white border shadow-sm p-4">
-            <p className="text-sm text-slate-600">Categories</p>
-            <p className="text-2xl font-semibold tracking-tight">{categoryCount}</p>
-          </div>
+        
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <SummaryCard label="Total Expenses" value={`$${totalExpenses.toFixed(2)}`} />
+          <SummaryCard label="Most Expensive" value={mostExpensive ? `$${mostExpensive.amount.toFixed(2)}` : "N/A"} />
+          <SummaryCard label="Least Expensive" value={leastExpensive ? `$${leastExpensive.amount.toFixed(2)}` : "N/A"} />
+          <SummaryCard label="Categories Tracked" value={`${categoryCount}`} />
         </div>
 
       </section>
 
       <section>
+        <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-medium tracking-tight">Recent Expenses</h2>
+        <Link href="/expenses" className="text-sm text-blue-600 hover:underline">View All</Link>
+        </div>
           <div className="mt-4 rounded-2xl bg-white border shadow-sm p-4">
-            {recentExpenses.map((expense) => (
-                <ExpenseListItem key={expense.id} expense={expense} />
-              ))}
+            {recentExpenses.length === 0 ? (
+                <p className="text-sm text-slate-600">No expenses recorded yet.</p>
+            ) : (
+                recentExpenses.map((expense) => (
+                    <ExpenseListItem key={expense.id} expense={expense} />
+                ))
+            )}
           </div>
       </section>
     </div>

@@ -2,7 +2,7 @@ export type ExpenseCategory = "food" | "bills" | "entertainment" | "subscription
 
 export type Expense = {
     id : string;
-    title : string;
+    label : string;
     amount : number;
     category: ExpenseCategory;
     createdAt: Date;
@@ -10,7 +10,7 @@ export type Expense = {
 }
 
 type NewExpenseInput = {
-    title : string;
+    label : string;
     amount : number;
     category: ExpenseCategory;
     note? : string;

@@ -18,6 +18,12 @@ export default function RootLayout({children,}: {  children: React.ReactNode}) {
               <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100">
                 Home
               </Link>
+              <Link href="/expenses" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100">
+                Expenses
+              </Link>
+              <Link href="/add-expense" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100">
+                Add Expense
+              </Link>
             </nav>  
         </div>
       </header>

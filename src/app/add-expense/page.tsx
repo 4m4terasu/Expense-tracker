@@ -3,21 +3,56 @@
 "use client";
 
 import { useState } from "react";
+import { Expense, ExpenseCategory } from "../types/expense";
 
 export default function AddExpensePage() {
 const [title, setTitle] = useState("");
 const [amount, setAmount] = useState("");
-const [category, setCategory] = useState("");
+const [category, setCategory] = useState<ExpenseCategory | "">("");
 const [date, setDate] = useState("");
 const [note, setNote] = useState("");
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("New Expense:", { title, amount, category, date, note });};
+    const trimmedTitle = title.trim();
+    const trimmedAmount = amount.trim();
+    const trimmedDate = date.trim();
+
+    if (!trimmedTitle || !trimmedAmount || !category || !trimmedDate) {
+        alert("Please fill in all required fields.");
+        return;
+    }
+
+    if (isNaN(Number(trimmedAmount)) || Number(trimmedAmount) <= 0) {
+        alert("Please enter a valid positive number for the amount.");
+        return;
+    }
+
+    if (new Date(trimmedDate) > new Date()) {
+        alert("Date cannot be in the future.");
+        return;
+    }
+
+    const newExpense : Expense = {
+        id: Date.now().toString(),
+        title: trimmedTitle,
+        amount: Number(trimmedAmount),
+        category,
+        createdAt: new Date(trimmedDate),
+        note: note.trim() || undefined,
+    };
+    console.log("New Expense:", newExpense);
+    alert("Expense added successfully!");
+    setTitle("");
+    setAmount("");
+    setCategory("");
+    setDate("");
+    setNote("");
+};
     return (
 
         <div className="p-4 flex flex-col gap-6">
             <h1 className="text-3xl font-semibold tracking-tight">Add New Expense</h1>
-            <p className="text-sm text-slate-600">Create a new expense record.</p>
+            <p className="text-sm text-muted">Create a new expense record.</p>
             <div className="rounded-2xl bg-white border shadow-sm p-4">
             <form className="mt-4 flex flex-col gap-4" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-1">
@@ -33,7 +68,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 <div className="flex flex-col gap-1">
                     <label htmlFor="category" className="text-sm font-medium tracking-tight">Category</label>
                     <select id="category" name="category" 
-                    value={category} onChange={(e) => setCategory(e.target.value)} className="rounded-md border border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    value={category} onChange={(e) => setCategory(e.target.value as ExpenseCategory | "")} className="rounded-md border border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">Select a category</option>
                         <option value="food">Food</option>
                         <option value="bills">Bills</option>
@@ -45,8 +80,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 </div>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="date" className="text-sm font-medium tracking-tight">Date</label>
-                    <input type="date" id="date" name="date" 
-                    value={date} onChange={(e) => setDate(e.target.value)} className="rounded-md border border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                    <input type="date" max={new Date().toISOString().split("T")[0]} id="date" name="date"
+                    value={date}  onChange={(e) => setDate(e.target.value)} className="rounded-md border border-slate-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
                 </div>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="note" className="text-sm font-medium tracking-tight">Note</label>

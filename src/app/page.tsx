@@ -15,7 +15,7 @@ const recentExpenses = sortExpensesByDate(expenses, false).slice(0, 5);
   return (
     <div className="p-4 flex flex-col gap-6">
       <h1 className="text-3xl font-semibold tracking-tight">Dashboard</h1>
-      <p className="text-sm text-slate-600">Track your expenses and review your recent spending.</p>
+      <p className="text-sm text-muted">Track your expenses and review your recent spending.</p>
 
       <section className="flex flex-col gap-4">
 
@@ -33,11 +33,11 @@ const recentExpenses = sortExpensesByDate(expenses, false).slice(0, 5);
       <section>
         <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-medium tracking-tight">Recent Expenses</h2>
-        <Link href="/expenses" className="text-sm text-blue-600 hover:underline">View All</Link>
+        <Link href="/expenses" className="text-sm text-accent hover:underline">View All</Link>
         </div>
           <div className="mt-4 rounded-2xl bg-white border shadow-sm p-4">
             {recentExpenses.length === 0 ? (
-                <p className="text-sm text-slate-600">No expenses recorded yet.</p>
+                <p className="text-sm text-muted">No expenses recorded yet.</p>
             ) : (
                 recentExpenses.map((expense) => (
                     <ExpenseListItem key={expense.id} expense={expense} />

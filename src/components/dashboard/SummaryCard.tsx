@@ -1,8 +1,8 @@
 export const SummaryCard = ({ label, value }: { label: string; value: string }) => {
     return (
-        <div className="rounded-2xl bg-white border shadow-sm p-4"> 
-            <p className="text-sm text-slate-600">{label}</p>
-            <p className="text-2xl font-semibold tracking-tight">{value}</p>
+        <div className="rounded-2xl border border-border bg-surface p-5 shadow-sm"> 
+            <p className="text-sm text-muted">{label}</p>
+            <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{value}</p>
         </div>
     );
 }

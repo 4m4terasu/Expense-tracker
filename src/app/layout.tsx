@@ -14,7 +14,7 @@ export default function RootLayout({children,}: {  children: React.ReactNode}) {
       <header className="border-b bg-white sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <span>Expense Tracker</span>
-            <nav>
+            <nav className="flex items-center gap-2">
               <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100">
                 Home
               </Link>

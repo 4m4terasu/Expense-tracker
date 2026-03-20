@@ -1,3 +1,5 @@
+/* Dashboard Page */
+
 import { calculateTotalExpenses, getCategoryTotals, getMostExpensiveExpense, getLeastExpensiveExpense, sortExpensesByDate } from "./lib/expenses/expense-utils";
 import { expenses } from "./lib/expenses/expense-data";
 import { ExpenseListItem } from "../components/expenses/ExpenseListItem";

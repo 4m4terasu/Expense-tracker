@@ -1,3 +1,5 @@
+/* Expenses Page */
+
 import { SummaryCard } from "@/components/dashboard/SummaryCard";
 import { expenses } from "../lib/expenses/expense-data";
 import { ExpenseListItem } from "@/components/expenses/ExpenseListItem";

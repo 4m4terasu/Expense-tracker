@@ -1,15 +1,13 @@
-"use client";
-
+import Link from "next/link";
 import type { Expense } from "@/app/types/expense";
+import { deleteExpense } from "@/app/expenses/actions";
 
 export const ExpenseListItem = ({
   expense,
-  onDelete,
-  onEdit,
+  showActions = false,
 }: {
   expense: Expense;
-  onDelete?: (id: string) => void;
-  onEdit?: (id: string) => void;
+  showActions?: boolean;
 }) => {
   return (
     <div className="flex items-start justify-between border-b border-border px-4 py-4 transition-colors hover:bg-surface-soft">
@@ -32,17 +30,25 @@ export const ExpenseListItem = ({
           </p>
         </div>
 
-        {onDelete && (
-          <div className="flex min-w-[64px] flex-col items-end gap-2">
+        {showActions && (
+          <div className="flex min-w-[72px] flex-col items-end gap-2">
             <button
               type="button"
-              onClick={() => onEdit?.(expense.id)}
-              className="rounded-md px-2 py-1 text-xs font-medium text-foreground transition-colors hover:bg-white hover:text-muted">Edit</button>
+              disabled
+              className="cursor-not-allowed rounded-md px-2 py-1 text-xs font-medium text-muted opacity-60"
+            >
+              Edit
+            </button>
 
-            <button
-              type="button"
-              onClick={() => onDelete(expense.id)}
-              className="rounded-md px-2 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-50">Delete</button>
+            <form action={deleteExpense}>
+              <input type="hidden" name="id" value={expense.id} />
+              <button
+                type="submit"
+                className="rounded-md px-2 py-1 text-xs font-medium text-red-600 transition-colors hover:bg-red-50"
+              >
+                Delete
+              </button>
+            </form>
           </div>
         )}
       </div>

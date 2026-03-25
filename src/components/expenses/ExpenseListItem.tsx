@@ -32,13 +32,11 @@ export const ExpenseListItem = ({
 
         {showActions && (
           <div className="flex min-w-[72px] flex-col items-end gap-2">
-            <button
-              type="button"
-              disabled
-              className="cursor-not-allowed rounded-md px-2 py-1 text-xs font-medium text-muted opacity-60"
-            >
+
+            <Link href={`/expenses/${expense.id}/edit`}
+            className="rounded-md px-2 py-1 text-xs font-medium text-foreground transition-colors hover:bg-white hover:text-accent">
               Edit
-            </button>
+            </Link>
 
             <form action={deleteExpense}>
               <input type="hidden" name="id" value={expense.id} />

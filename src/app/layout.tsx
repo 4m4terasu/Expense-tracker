@@ -1,11 +1,6 @@
 import "./globals.css";
 import Link from "next/link";
 
-//export const metadata: Metadata = {
-//  title: "...",
-//  description: "...",
-//};
-
 export default function RootLayout({children,}: {  children: React.ReactNode}) {
   return (
 

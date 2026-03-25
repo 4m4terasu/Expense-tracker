@@ -14,7 +14,11 @@ export default async function EditExpensePage({
     notFound();
   }
 
-  const formattedDate = expense.createdAt.toISOString().split("T")[0];
+  const formattedDate = [
+  expense.createdAt.getFullYear(),
+  String(expense.createdAt.getMonth() + 1).padStart(2, "0"),
+  String(expense.createdAt.getDate()).padStart(2, "0"),
+].join("-");
 
   return (
     <div className="flex flex-col gap-6 p-4">

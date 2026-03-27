@@ -31,7 +31,7 @@ export default async function EditExpensePage({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="title"
-              className="text-sm font-medium tracking-tight text-foreground"
+              className="text-sm font-medium text-foreground"
             >
               Title
             </label>
@@ -47,7 +47,7 @@ export default async function EditExpensePage({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="amount"
-              className="text-sm font-medium tracking-tight text-foreground"
+              className="text-sm font-medium text-foreground"
             >
               Amount
             </label>
@@ -64,7 +64,7 @@ export default async function EditExpensePage({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="category"
-              className="text-sm font-medium tracking-tight text-foreground"
+              className="text-sm font-medium text-foreground"
             >
               Category
             </label>
@@ -86,7 +86,7 @@ export default async function EditExpensePage({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="date"
-              className="text-sm font-medium tracking-tight text-foreground"
+              className="text-sm font-medium text-foreground"
             >
               Date
             </label>
@@ -102,7 +102,7 @@ export default async function EditExpensePage({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="note"
-              className="text-sm font-medium tracking-tight text-foreground"
+              className="text-sm font-medium text-foreground"
             >
               Note
             </label>
